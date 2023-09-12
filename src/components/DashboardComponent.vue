@@ -2,18 +2,19 @@
     <div>
         <h1>Panel de Control</h1>
         <p>Bienvenido, {{ username }}.</p>
-        <!-- Aquí puedes agregar contenido adicional para el panel de control -->
     </div>
 </template>
   
 <script>
+
 export default {
-    computed: {
-        username() {
-            // Aquí puedes obtener el nombre de usuario del estado de autenticación.
-            // Por ejemplo, si tienes un sistema de autenticación implementado.
-            return 'Nombre de Usuario';
-        },
+    data() {
+        return {
+            username: '',
+        };
+    },
+    created() {
+        this.username = localStorage.getItem('vueUser');
     },
 };
 </script>

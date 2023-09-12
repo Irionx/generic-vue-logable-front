@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LoginView from '../views/LoginView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import DashboardView from '../views/DashboardView.vue';
+import authService from '../services/authService';
 
 const routes = [
   { path: '/', redirect: '/dashboard' },
@@ -16,7 +17,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = false; // Cambia esto para verificar si el usuario está autenticado
+  const isAuthenticated = authService.isAuthenticated(); // Cambia esto para verificar si el usuario está autenticado
   if (to.matched.some((record) => record.meta.requiresAuth) && !isAuthenticated) {
     next('/login');
   } else {

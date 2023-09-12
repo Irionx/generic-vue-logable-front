@@ -15,26 +15,23 @@
 </template>
 
 <script>
-import authService from '../services/authService'; // Ajusta la ruta según la ubicación de tu servicio
+import authService from '../services/authService';
 
 export default {
   data() {
     return {
-      username: 'irion',
-      password: '123456',
+      username: '',
+      password: '',
     };
   },
   methods: {
     login() {
       authService.login(this.username, this.password)
-        .then((token) => {
-          // Manejar el token de autenticación aquí (por ejemplo, guardar en Vuex o localStorage)
-          console.log('Token de autenticación recibido:', token);
-          // Redirigir al usuario al dashboard u otra página
-          /* this.$router.push('/dashboard'); */
+        .then(() => {
+          console.log('Token de autenticación recibido:');
+          this.$router.push('/dashboard');
         })
         .catch((error) => {
-          // Manejar errores de inicio de sesión aquí
           console.error('Error de inicio de sesión:', error);
         });
     },
